@@ -1,4 +1,4 @@
-function MyComponent () {
+function AddNote () {
     return <>MyComponent</>;
 }
 

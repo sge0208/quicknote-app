@@ -1,4 +1,4 @@
-function MyComponent () {
+function DisplayNotes () {
     return <>MyComponent</>;
 }
 
