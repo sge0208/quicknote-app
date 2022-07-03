@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showHomepage: true,
       notes: [ /* Data not shown to save space */ ],
     };
   }
@@ -20,15 +21,32 @@ class App extends Component {
     });
   };
 
+  changePage = () => {
+    this.setState((state) => {
+      return {
+        showHomepage: !state.showHomepage,
+      };
+    });
+  };
+
+
   render() {
-    const { notes } = this.state;
+    const { notes, showHomepage } = this.state;
     return (
         <Container>
-          <DisplayNotes notes={notes} deleteNote={this.deleteNote} />
-          <AddNote />
+          {showHomepage ? (
+              <DisplayNotes
+                  notes={notes}
+                  deleteNote={this.deleteNote}
+                  changePage={this.changePage}
+              />
+          ) : (
+              <AddNote changePage={this.changePage} />
+          )}
         </Container>
     );
   }
+
 
 }
 
