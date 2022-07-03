@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Collapse, List, ListItem, ListItemText, ListItemIcon } from "@material-ui/core";
-import { ExpandLess, ExpandMore } from "@material-ui/icons";
+import { Collapse, List, ListItem, ListItemText, ListItemIcon, Button } from "@material-ui/core";
+import { ExpandLess, ExpandMore, Delete } from "@material-ui/icons";
 
 class Note extends Component {
     constructor(props) {
@@ -11,24 +11,32 @@ class Note extends Component {
     }
 
     handleClick = () => {
-        this.setState({ open: !this.state.open });
+        this.setState({open: !this.state.open});
     };
 
+
     render() {
-        const { note } = this.props;
-        const { open } = this.state;
+
+        const {note, deleteNote} = this.props;
+        const {open} = this.state;
 
         return (
             <>
-                <ListItem onClick={this.handleClick}>
-                    <ListItemIcon>
-                        { open ? <ExpandLess /> : <ExpandMore />}
+                <ListItem>
+
+                    <ListItemIcon onClick={this.handleClick}>
+                        {open ? <ExpandLess/> : <ExpandMore/>}
                     </ListItemIcon>
-                    <ListItemText primary={note.title} />
+                    <ListItemText primary={note.title}/>
+                    <ListItemIcon>
+                        <Button onClick={() => deleteNote(note)}>
+                            <Delete/>
+                        </Button>
+                    </ListItemIcon>
                 </ListItem>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <ListItemText secondary={note.text} />
+                        <ListItemText secondary={note.text}/>
                     </List>
                 </Collapse>
             </>
