@@ -25,7 +25,7 @@ class App extends Component {
     return (
         <Container>
           <DisplayNotes notes={notes} deleteNote={this.deleteNote} />
-          +       <AddNote />
+          <AddNote />
         </Container>
     );
   }
